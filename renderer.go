@@ -7,6 +7,6 @@ type Post struct {
 	Tags                     []string
 }
 
-func Render(w io.Writer, content Post) error {
+func Render(w io.Writer, p Post) error {
 	return nil
 }
