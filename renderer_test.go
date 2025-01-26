@@ -12,8 +12,9 @@ import (
 func TestRender(t *testing.T) {
 	var (
 		aPost = blogrenderer.Post{
-			Title:       "hello world",
-			Body:        "This is a post",
+			Title: "hello world",
+			Body: `# First recipe!
+Welcome to my **amazing blog**. I am going to write about my family recipes, and make sure I write a long, irrelevant and boring story about my family before you get to the actual instructions.`,
 			Description: "This is a description",
 			Tags:        []string{"go", "tdd"},
 		}
@@ -42,12 +43,7 @@ func TestRender(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		got := buf.String()
-		want := `<ol><li><a href="/post/hello-world">Hello World</a></li><li><a href="/post/hello-world-2">Hello World 2</a></li></ol>`
-
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
+		approvals.VerifyString(t, buf.String())
 	})
 }
 
